@@ -1,0 +1,22 @@
+1 - Criar um container
+    docker run -it [imagem do SO] /bin/bash
+    ex: docker run -it fedora /bin/bash
+
+2 - Listar containers em execução
+    docker ps
+
+3 - Listar todos os containers 
+    docker ps -a
+
+4 - Iniciar um container
+    docker start [hash do container]
+
+5 - Vincular a um container
+    docker attach [hash do container]
+
+6 - Sair do continer sem interromper 
+    CTRL + P + Q
+
+7 - Baixar imagem mais recente da imagem
+    docker  pull [imagem do SO]
+    ex: docker pull fedora
