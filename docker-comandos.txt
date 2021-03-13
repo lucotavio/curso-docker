@@ -117,3 +117,7 @@
      docker run -it --volumes-from=[nome do volume] [imagem do SO] /bin/bash  
      ex: docker run -it --volumes-from=vols centos /bin/bash
 
+32 - Remover volume, para remover o volume é necessario remover os containers que utilizam o volume
+     docker volume rm [volume name]
+     ex: docker volume rm  b25a218680fe0c2ef29f33d2275d48432015c428e3c272ad5989847203ed8b69
+
