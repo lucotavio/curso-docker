@@ -94,3 +94,26 @@
      docker build -t="[tag]" .
      docker build -t="build1" .
 
+26 - Ver um pedaço do log do container
+     docker log [hash do container]
+     ex docker log 11abad0f1df9
+
+27 - Acompanhar o log em tempo de execução
+     docker log -f [hash do container]
+     ex docker log -f 11abad0f1df9
+
+28 - Criar um container e um volume
+     docker run -it -v /[nome do diretorio no container] --name=[nome do volume] [imagem do SO] /bin/bash
+     ex: docker run -it -v /foo-bar --name=vols centos /bin/bash
+
+29 - Listar volumes
+     docker volume -ls
+
+30 - Inpecionar Volumes
+     docker inspect [nome do volume]
+     ex: docker inspect vols
+
+31 - Compartilhando volumes com outros containers
+     docker run -it --volumes-from=[nome do volume] [imagem do SO] /bin/bash  
+     ex: docker run -it --volumes-from=vols centos /bin/bash
+
