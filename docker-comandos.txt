@@ -6,118 +6,126 @@
      docker run -it [imagem do SO]:versão /bin/bash
      ex: docker run -it fedora:32 /bin/bash
 
-03 - Listar containers em execução
+03 - Criar container com nome 
+     docker run -it --name=[nome do container] [imagem do SO] /bin/bash
+     docker run -it --name=teste ubuntu /bin/bash
+
+04 - Listar containers em execução
      docker ps
 
-04 - Listar todos os containers 
+05 - Listar todos os containers 
      docker ps -a
 
-05 - Especificar ultimo container a ser executado
+06 - Especificar ultimo container a ser executado
      docker ps -l
 
-06 - Criando um alias para um comando, vou criar[
+07 - Criando um alias para um comando, vou criar[
      um alias para o comando docker ps
      alias dps="docker ps"
 
-07 - Iniciar um container
+08 - Iniciar um container
      docker start [hash do container]
      ex: docker start 11abad0f1df9
 
-08 - Vincular a um container
+09 - Vincular a um container
      docker attach [hash do container]
      ex: docker attach 11abad0f1df9
 
-09 - Parar um container
+10 - Parar um container
      docker stop [hash do container]
      ex: docker stop 11abad0f1df9
 
-10 - Reiniciar container
+11 - Reiniciar container
      docker restart [hash do container]
      ex: docker restart 11abad0f1df9
 
-11 - Sair do container sem interromper 
+12 - Sair do container sem interromper 
      CTRL + P + Q
 
-12 - Remover um container depois de parar o container
+13 - Remover um container depois de parar o container
      docker rm [hash do container]
      ex: docker rm 11abad0f1df9
 
-13 - Remover um container sem precisar parar o container, 
+14 - Remover um container sem precisar parar o container, 
      mas não é recomendavel o melhor é parar primeiro o container
      docker rm [hash do container] -f
      ex: docker rm 11abad0f1df9 -f
 
-14 - Baixar imagem mais recente do SO
+15 - Baixar imagem mais recente do SO
      docker  pull [imagem do SO]
      ex: docker pull fedora
 
-15 - Baixar todas as imagens do SO
+16 - Baixar todas as imagens do SO
      docker  pull -a [imagem do SO]
      ex: docker pull -a fedora
 
-16 - Listar todas as imagens
+17 - Listar todas as imagens
      docker images
 
-17 - Listar todas as imagens de um SO
+18 - Listar todas as imagens de um SO
      docker images [SO]
      ex: docker images fedora
 
-18 - Removendo imagens
+19 - Removendo imagens
      docker rmi [hash do container]
      ex: docker rmi 11abad0f1df9
 
-19 - Removendo imagens a força
+20 - Removendo imagens a força
      docker rmi -f [hash do container]
      ex: docker rmi -f 11abad0f1df9
 
-20 - Recuperar Pid do processo
+21 - Recuperar Pid do processo
      docker inspect [hash do container] | grep Pid
      ex: docker inspect 0e50dd4e9485 | grep Pid
 
-21 - Usar o nsenter para executar comandos dentro do container 
+22 - Usar o nsenter para executar comandos dentro do container 
      sudo nsenter -m -u -n -p -i -t Pid /bin/bash
      ex: sudo nsenter -m -u -n -p -i -t 3420 /bin/bash
 
-22 - Usar nsenter usando comando exec
+23 - Usar nsenter usando comando exec
      docker exec -it [hash do container] /bin/bash
      ex: docker exec -it 11abad0f1df9 /bin/bash
 
-23 - Construindo uma imagem á partir de um Dockerfile
+24 - Construindo uma imagem á partir de um Dockerfile
      docker build -t [nome da imagem]:versão .
      ex: docker build -t helloworld:0.1 .
 
-24 - Histórico da imagem
+25 - Histórico da imagem
      docker history [nome da imagem]
      ex: docker history helloworld:0.1
 
-25 - Construindo uma imagem á partir de um Dockerfile com tag
+26 - Construindo uma imagem á partir de um Dockerfile com tag
      docker build -t="[tag]" .
      docker build -t="build1" .
 
-26 - Ver um pedaço do log do container
+27 - Ver um pedaço do log do container
      docker log [hash do container]
      ex docker log 11abad0f1df9
 
-27 - Acompanhar o log em tempo de execução
+28 - Acompanhar o log em tempo de execução
      docker log -f [hash do container]
      ex docker log -f 11abad0f1df9
 
-28 - Criar um container e um volume
+29 - Criar um container e um volume
      docker run -it -v /[nome do diretorio no container] --name=[nome do volume] [imagem do SO] /bin/bash
      ex: docker run -it -v /foo-bar --name=vols centos /bin/bash
 
-29 - Listar volumes
+30 - Listar volumes
      docker volume -ls
 
-30 - Inpecionar Volumes
+31 - Inpecionar Volumes
      docker inspect [nome do volume]
      ex: docker inspect vols
 
-31 - Compartilhando volumes com outros containers
+32 - Compartilhando volumes com outros containers
      docker run -it --volumes-from=[nome do volume] [imagem do SO] /bin/bash  
      ex: docker run -it --volumes-from=vols centos /bin/bash
 
-32 - Remover volume, para remover o volume é necessario remover os containers que utilizam o volume
+33 - Remover volume, para remover o volume é necessario remover os containers que utilizam o volume
      docker volume rm [volume name]
      ex: docker volume rm  b25a218680fe0c2ef29f33d2275d48432015c428e3c272ad5989847203ed8b69
+
+34 - Saber detalhes do Virtual Bridge Docker0
+     brctl show docker0
+     
 
