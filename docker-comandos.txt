@@ -50,82 +50,101 @@
      mas não é recomendavel o melhor é parar primeiro o container
      docker rm [hash do container] -f
      ex: docker rm 11abad0f1df9 -f
+     
+15 - Removendo todos os container a força
+     docker rm -f $(docker ps -qa)
 
-15 - Baixar imagem mais recente do SO
+16 - Baixar imagem mais recente do SO
      docker  pull [imagem do SO]
      ex: docker pull fedora
 
-16 - Baixar todas as imagens do SO
+17 - Baixar todas as imagens do SO
      docker  pull -a [imagem do SO]
      ex: docker pull -a fedora
 
-17 - Listar todas as imagens
+18 - Listar todas as imagens
      docker images
 
-18 - Listar todas as imagens de um SO
+19 - Listar todas as imagens de um SO
      docker images [SO]
      ex: docker images fedora
 
-19 - Removendo imagens
+20 - Removendo imagens
      docker rmi [hash do container]
      ex: docker rmi 11abad0f1df9
 
-20 - Removendo imagens a força
+21 - Removendo imagens a força
      docker rmi -f [hash do container]
      ex: docker rmi -f 11abad0f1df9
+     
+22 - Removendo todas as imagens
+     docker rmi -f $(docker images -aq)
 
-21 - Recuperar Pid do processo
+23 - Recuperar Pid do processo
      docker inspect [hash do container] | grep Pid
      ex: docker inspect 0e50dd4e9485 | grep Pid
 
-22 - Usar o nsenter para executar comandos dentro do container 
+24 - Usar o nsenter para executar comandos dentro do container 
      sudo nsenter -m -u -n -p -i -t Pid /bin/bash
      ex: sudo nsenter -m -u -n -p -i -t 3420 /bin/bash
 
-23 - Usar nsenter usando comando exec
+25 - Usar nsenter usando comando exec
      docker exec -it [hash do container] /bin/bash
      ex: docker exec -it 11abad0f1df9 /bin/bash
 
-24 - Construindo uma imagem á partir de um Dockerfile
+26 - Construindo uma imagem á partir de um Dockerfile
      docker build -t [nome da imagem]:versão .
      ex: docker build -t helloworld:0.1 .
 
-25 - Histórico da imagem
+27 - Histórico da imagem
      docker history [nome da imagem]
      ex: docker history helloworld:0.1
 
-26 - Construindo uma imagem á partir de um Dockerfile com tag
+28 - Construindo uma imagem á partir de um Dockerfile com tag
      docker build -t="[tag]" .
      docker build -t="build1" .
 
-27 - Ver um pedaço do log do container
+29 - Ver um pedaço do log do container
      docker log [hash do container]
      ex docker log 11abad0f1df9
 
-28 - Acompanhar o log em tempo de execução
+30 - Acompanhar o log em tempo de execução
      docker log -f [hash do container]
      ex docker log -f 11abad0f1df9
 
-29 - Criar um container e um volume
+31 - Criar um container e um volume
      docker run -it -v /[nome do diretorio no container] --name=[nome do volume] [imagem do SO] /bin/bash
      ex: docker run -it -v /foo-bar --name=vols centos /bin/bash
 
-30 - Listar volumes
+32 - Listar volumes
      docker volume -ls
 
-31 - Inpecionar Volumes
+33 - Inpecionar Volumes
      docker inspect [nome do volume]
      ex: docker inspect vols
 
-32 - Compartilhando volumes com outros containers
+34 - Compartilhando volumes com outros containers
      docker run -it --volumes-from=[nome do volume] [imagem do SO] /bin/bash  
      ex: docker run -it --volumes-from=vols centos /bin/bash
 
-33 - Remover volume, para remover o volume é necessario remover os containers que utilizam o volume
+35 - Remover volume, para remover o volume é necessario remover os containers que utilizam o volume
      docker volume rm [volume name]
      ex: docker volume rm  b25a218680fe0c2ef29f33d2275d48432015c428e3c272ad5989847203ed8b69
 
-34 - Saber detalhes do Virtual Bridge Docker0
+36 - Saber detalhes do Virtual Bridge Docker0
      brctl show docker0
+     
+37 - Subindo docker compose (tem que estar dentro do diretorio do arquivo)
+     docker-compose up
+     
+38 - Subir o docker compose em background ou detachado (tem que estar dentro do diretorio do arquivo)
+     docker-compose -d
+     
+39 - Derrubar os containers que estão dentro do arquivo docker-compose.yml (tem que estar dentro do diretorio do arquivo)
+     docker-compose down
+     
+40 - Mostrar os containers que estão associados ao arquivo docker-compose.yml (tem que estar dentro do diretorio do arquivo)
+     docker-compose ps
+     
      
 
